@@ -44,6 +44,14 @@ class MapComponent extends React.Component {
     if (prevProps.restaurants !== this.props.restaurants) {
       this.updateMarkers();
     }
+    // 当选中的餐厅变化时，移动到该位置
+    if (prevProps.selectedRestaurant !== this.props.selectedRestaurant) {
+      var selectedRestaurant = this.props.selectedRestaurant;
+      if (selectedRestaurant && selectedRestaurant.latitude && selectedRestaurant.longitude && this.map) {
+        this.map.setCenter([selectedRestaurant.longitude, selectedRestaurant.latitude]);
+        this.map.setZoom(15);
+      }
+    }
   }
 
   initMap() {

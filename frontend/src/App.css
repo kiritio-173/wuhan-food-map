@@ -174,6 +174,12 @@ body {
   transition: width 0.3s;
 }
 
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .sidebar.collapsed {
   width: 0;
   border: none;
@@ -429,4 +435,87 @@ body {
   font-size: 0.8rem;
   color: var(--text-secondary);
   flex-shrink: 0;
+}
+
+/* 右侧详情面板 */
+.sidebar-detail {
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-color);
+  max-height: 40%;
+  overflow-y: auto;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.detail-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.close-detail {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 0;
+  line-height: 1;
+}
+
+.detail-info {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.detail-info p {
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.detail-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.detail-rating .stars {
+  color: #f1c40f;
+}
+
+.detail-rating .price {
+  color: var(--text-secondary);
+}
+
+.detail-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+
+.detail-tag {
+  padding: 0.25rem 0.5rem;
+  background: var(--card-bg);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.detail-summary {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
 }

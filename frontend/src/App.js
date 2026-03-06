@@ -228,19 +228,48 @@ function App() {
             <MapComponent
               restaurants={filteredRestaurants}
               selectedRestaurant={selectedRestaurant}
-              onMarkerClick={handleRestaurantClick}
+              onRestaurantClick={handleRestaurantClick}
               userLocation={userLocation}
               filters={filters}
             />
             
             {/* 侧边栏列表（地图模式下显示） */}
             <div className="sidebar">
-              <h2>附近餐厅 ({filteredRestaurants.length})</h2>
-              <RestaurantList 
-                restaurants={filteredRestaurants.slice(0, 10)}
-                onItemClick={handleRestaurantClick}
-                selectedId={selectedRestaurant?.id}
-              />
+              <div className="sidebar-header">
+                <h2>附近餐厅 ({filteredRestaurants.length})</h2>
+              </div>
+              <div className="sidebar-content">
+                <RestaurantList 
+                  restaurants={filteredRestaurants.slice(0, 10)}
+                  onItemClick={handleRestaurantClick}
+                  selectedId={selectedRestaurant?.id}
+                />
+              </div>
+              {/* 选中餐厅详情面板 */}
+              {selectedRestaurant && (
+                <div className="sidebar-detail">
+                  <div className="detail-header">
+                    <h3>{selectedRestaurant.name}</h3>
+                    <button className="close-detail" onClick={() => setSelectedRestaurant(null)}>×</button>
+                  </div>
+                  <div className="detail-info">
+                    <p>📍 {selectedRestaurant.address}</p>
+                    <p>📞 {selectedRestaurant.phone || '暂无'}</p>
+                    <p>🕐 {selectedRestaurant.opening_hours || '暂无'}</p>
+                  </div>
+                  <div className="detail-rating">
+                    <span className="stars">⭐ {selectedRestaurant.rating}</span>
+                    <span className="price">{'¥'.repeat(selectedRestaurant.price_level || 1)}</span>
+                    <span>👀 {selectedRestaurant.popularity || 0}</span>
+                  </div>
+                  <div className="detail-tags">
+                    {(selectedRestaurant.tags || []).map((tag, i) => (
+                      <span key={i} className="detail-tag">{tag}</span>
+                    ))}
+                  </div>
+                  <p className="detail-summary">{selectedRestaurant.review_summary || '暂无简介'}</p>
+                </div>
+              )}
             </div>
           </div>
         )}
