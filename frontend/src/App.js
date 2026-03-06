@@ -263,9 +263,9 @@ function App() {
                     <span>👀 {selectedRestaurant.popularity || 0}</span>
                   </div>
                   <div className="detail-tags">
-                    {(selectedRestaurant.tags || []).map((tag, i) => (
-                      <span key={i} className="detail-tag">{tag}</span>
-                    ))}
+                    {selectedRestaurant.tags && selectedRestaurant.tags.map(function(tag, i) {
+                      return React.createElement('span', { key: i, className: 'detail-tag' }, tag);
+                    })}
                   </div>
                   <p className="detail-summary">{selectedRestaurant.review_summary || '暂无简介'}</p>
                 </div>

@@ -41,7 +41,7 @@ function RestaurantList(props) {
     
     var imgSrc = images.length > 0 ? images[0] : placeholderImg;
     var cardClass = 'restaurant-card';
-    if (selectedId === restaurant.id) {
+    if (selectedId && restaurant.id && selectedId === restaurant.id) {
       cardClass = cardClass + ' selected';
     }
     
