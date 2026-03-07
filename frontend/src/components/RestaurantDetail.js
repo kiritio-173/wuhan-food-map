@@ -41,7 +41,7 @@ const RestaurantDetail = ({ restaurant, onClose }) => {
         {/* 头部图片 */}
         <div className="detail-header">
           <img 
-            src={restaurant.images[0] || '/placeholder.jpg'} 
+            src={(restaurant.images && restaurant.images[0]) || '/placeholder.jpg'} 
             alt={restaurant.name}
             className="header-image"
           />

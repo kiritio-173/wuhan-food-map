@@ -131,8 +131,8 @@ function App() {
   };
 
   const handleRestaurantClick = (restaurant) => {
+    console.log('点击餐厅:', restaurant.name);
     setSelectedRestaurant(restaurant);
-    setViewMode('map');
   };
 
   const handleAddRestaurant = (newRestaurant) => {
@@ -229,8 +229,6 @@ function App() {
               restaurants={filteredRestaurants}
               selectedRestaurant={selectedRestaurant}
               onRestaurantClick={handleRestaurantClick}
-              userLocation={userLocation}
-              filters={filters}
             />
             
             {/* 侧边栏列表（地图模式下显示） */}
@@ -242,39 +240,14 @@ function App() {
                 <RestaurantList 
                   restaurants={filteredRestaurants.slice(0, 10)}
                   onItemClick={handleRestaurantClick}
-                  selectedId={selectedRestaurant?.id}
                 />
               </div>
-              {/* 选中餐厅详情面板 */}
-              {selectedRestaurant && (
-                <div className="sidebar-detail">
-                  <div className="detail-header">
-                    <h3>{selectedRestaurant.name}</h3>
-                    <button className="close-detail" onClick={() => setSelectedRestaurant(null)}>×</button>
-                  </div>
-                  <div className="detail-info">
-                    <p>📍 {selectedRestaurant.address}</p>
-                    <p>📞 {selectedRestaurant.phone || '暂无'}</p>
-                    <p>🕐 {selectedRestaurant.opening_hours || '暂无'}</p>
-                  </div>
-                  <div className="detail-rating">
-                    <span className="stars">⭐ {selectedRestaurant.rating}</span>
-                    <span className="price">{'¥'.repeat(selectedRestaurant.price_level || 1)}</span>
-                    <span>👀 {selectedRestaurant.popularity || 0}</span>
-                  </div>
-                  <div className="detail-tags">
-                    {selectedRestaurant.tags && selectedRestaurant.tags.map(function(tag, i) {
-                      return React.createElement('span', { key: i, className: 'detail-tag' }, tag);
-                    })}
-                  </div>
-                  <p className="detail-summary">{selectedRestaurant.review_summary || '暂无简介'}</p>
-                </div>
-              )}
             </div>
           </div>
         )}
 
-        {/* 列表视图 */}
+        {/* 列表视图 - 已禁用 */}
+        {/*
         {viewMode === 'list' && (
           <div className="list-view">
             <RestaurantList 
@@ -284,6 +257,7 @@ function App() {
             />
           </div>
         )}
+        */}
       </main>
 
       {/* 详情弹窗 */}
