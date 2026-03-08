@@ -238,10 +238,30 @@ function App() {
               </div>
               <div className="sidebar-content">
                 <RestaurantList 
-                  restaurants={filteredRestaurants.slice(0, 10)}
+                  restaurants={filteredRestaurants.slice(0, 20)}
                   onItemClick={handleRestaurantClick}
                 />
               </div>
+              {/* 侧边栏底部 - 选中餐厅简要信息 */}
+              {selectedRestaurant && (
+                <div className="sidebar-bottom">
+                  <div className="bottom-header">
+                    <span className="bottom-title">{selectedRestaurant.name}</span>
+                    <button onClick={() => setSelectedRestaurant(null)}>✕</button>
+                  </div>
+                  <div className="bottom-info">
+                    <span>⭐ {selectedRestaurant.rating}</span>
+                    <span>📍 {selectedRestaurant.address?.substring(0, 20)}...</span>
+                  </div>
+                  <a 
+                    className="bottom-nav"
+                    href={`https://map.amap.com/search?query=${encodeURIComponent(selectedRestaurant.name)}`}
+                    target="_blank"
+                  >
+                    导航到这儿 →
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -260,13 +280,15 @@ function App() {
         */}
       </main>
 
-      {/* 详情弹窗 */}
+      {/* 详情弹窗 - 已禁用，改用侧边栏显示 */}
+      {/*
       {selectedRestaurant && (
         <RestaurantDetail 
           restaurant={selectedRestaurant}
           onClose={() => setSelectedRestaurant(null)}
         />
       )}
+      */}
 
       {showAddModal && (
         <AddRestaurantModal
